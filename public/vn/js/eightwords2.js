@@ -52,6 +52,7 @@ function checkyearearth(year){
 	 var num;
      if(parseInt(year) < 2000){
 		num = ((parseInt(year) % 60) -3);	
+		alert("xxxx="+num);
 		if(num <=0){
 			earthnum = (num + 60) % 12;
 		}else{
@@ -60,6 +61,7 @@ function checkyearearth(year){
 	 }else{
 		earthnum = (parseInt(year.substring(2)) + 5) % 12;		
 	 }
+	 alert("aaaaaa="+earthnum);
 	return earthnum;
 }
 
