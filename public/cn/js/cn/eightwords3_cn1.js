@@ -1,13 +1,15 @@
 //skys = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
-//Tien = ["Giap","At","Binh","Dinh","Mau","Ky","Canh","Tan","Nham","Quy"];
+//Tien = ["meth","eth","prop","but","pent","hex","hept","oct","non","dec"];
 //earths = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
-//Di = ["Ty1","Suu","Dan","Mao","Thin","Ty6","Ngo","Mui","Than","Dau","Tuat","Hoi"];
+//Di = ["Rat","Ox","Tiger","Rabbit","Dragon","Snake","Horse","Ram","Monkey","Chick","Canine","Hog"];
 var yearskyelement, yearearthelement, monthskyelement, monthearthelement; 
 var dayskyelement, dayearthelement, hourskyelement, hourearthelement;
 
 function msg3(){
+	//把天干地支換為五行符號
 	yearskyelement = checktienelement(vyearsky);
 	yearearthelement = checkdielement(vyearearth);
+	//alert(yearearthelement);	
 	monthskyelement = checktienelement(vmonthsky);
 	monthearthelement = checkdielement(vmonthearth);
 	dayskyelement = checktienelement(vdaysky);
@@ -18,9 +20,12 @@ function msg3(){
 	document.getElementById("monthelement").value = monthskyelement + "-" + monthearthelement;
 	document.getElementById("dayelement").value = dayskyelement + "-" + dayearthelement;
 	document.getElementById("hourelement").value = hourskyelement + "-" + hourearthelement;
+
+	//計算五行符號的多少
 	var Tienelements = countelement(yearskyelement, monthskyelement, dayskyelement, hourskyelement);
 	//alert(Tienelements);
 	var Dielements = countelement(yearearthelement, monthearthelement,dayearthelement,hourearthelement);
+	//將天干五行加上地支五行
 	totalelement = parseInt(Tienelements) + parseInt(Dielements);
 	var strtotalelement = totalelement.toString();
 	//alert(strtotalelement);
@@ -29,64 +34,68 @@ function msg3(){
 	//alert(arrayelement[4]);
 	var elementtype = arrayelement[4];
 	var elementstring = elementtype.toString();
+	//計算結果及作出建議
 	//alert(elementadvice(elementstring));
 	//alert(matchelement(dayskyelement, elementstring));
 	document.getElementById("btnexplain").style.display = 'block';
 	document.getElementById("secexplain").style.display = 'block';
-	document.getElementById("advice").value = elementadvice(elementstring) + " ;Yếu tố trong cuộc sống của bạn là: " + dayskyelement;
+	document.getElementById("advice").value = elementadvice(elementstring) + " ;The element in your life is: " + dayskyelement;
+
 }
 
 function checktienelement(tien){
-   if(tien == "Giáp"|| tien == "Ất"){
-	   var element = "Gỗ";
-   }else if(tien == "Bính"|| tien == "Đinh"){
-	   var element = "Lửa";
-   }else if(tien == "Mậu"|| tien == "Kỷ"){
-	   var element = "Đất";
-   }else if(tien == "Canh"|| tien == "Tân"){
-	   var element = "Kim";
-   }else if(tien == "Nhâm"|| tien == "Qúy"){
-	   var element = "Nước";
+   if(tien == "meth"|| tien == "eth"){
+	   var element = "Wood";
+   }else if(tien == "prop"|| tien == "but"){
+	   var element = "Fire";
+   }else if(tien == "pent"|| tien == "hex"){
+	   var element = "Earth";
+   }else if(tien == "hept"|| tien == "oct"){
+	   var element = "Metal";
+   }else if(tien == "non"|| tien == "dec"){
+	   var element = "Water";
    }
 	return element;
 }
 
 function checkdielement(di){
-	if(di == "Dần"|| di == "Mão"){
-	   var element = "Gỗ";
-   }else if(di == "Tỵ"|| di == "Ngọ"){
-	   var element = "Lửa";
-   }else if(di == "Sửu"|| di == "Thìn"|| di == "Mùi"|| di == "Tuất"){
-	   var element = "Đất";
-   }else if(di == "Thân"|| di == "Dậu"){
-	   var element = "Kim";
-   }else if(di == "Tý"|| di == "Hợi"){
-	   var element = "Nước";
+	if(di == "Tiger"|| di == "Rabbit"){
+	   var element = "Wood";
+   }else if(di == "Snake"|| di == "Horse"){
+	   var element = "Fire";
+   }else if(di == "Dragon"|| di == "Canine"|| di == "Ox"|| di == "Ram"){
+	   var element = "Earth";
+   }else if(di == "Monkey"|| di == "Chick"){
+	   var element = "Metal";
+   }else if(di == "Rat"|| di == "Hog"){
+	   var element = "Water";
    }
 	return element;
 }
 
+
 function countelement(year, month, day, hour){
-	var Dat = 0; 
-	var Lua = 0; 
-	var Kim = 0;
-	var Nuoc = 0;
-	var Go = 0;
+	var Earth = 0; 
+	var Fire = 0; 
+	var Metal = 0;
+	var Water = 0;
+	var Wood = 0;
 	var elements = [year, month, day, hour];
 	for(i=0;i<4;i++){	
-		if(elements[i] == "Đất"){
-			Dat = Dat +1;
-		}else if(elements[i] == "Lửa"){
-			Lua = Lua +1;
-		}else if(elements[i] == "Kim"){
-			Kim = Kim +1;
-		}else if(elements[i] == "Nước"){
-			Nuoc = Nuoc +1;
-		}else if(elements[i] == "Gỗ"){
-			Go = Go +1;
+		if(elements[i] == "Earth"){
+			Earth = Earth + 1;
+		}else if(elements[i] == "Fire"){
+			Fire = Fire + 1;
+		}else if(elements[i] == "Metal"){
+			Metal = Metal + 1;
+		}else if(elements[i] == "Water"){
+			Water = Water + 1;
+		}else if(elements[i] == "Wood"){
+			Wood = Wood + 1;
 		}
 	}	
-	return Dat.toString() + Lua.toString() + Kim.toString() + Nuoc.toString() + Go.toString();
+	return Earth.toString() + Fire.toString() + Metal.toString() + Water.toString() + Wood.toString();   
+	//return a number with 5 position 01210, total should be 4.
 }
 
 function calelements(elementsnum){
@@ -96,7 +105,7 @@ function calelements(elementsnum){
 	var waternum = elementsnum.substring(3,4);
 	var woodnum = elementsnum.substring(4,5);
 	var sortable=[];
-	var elementsobj = {Dat: earthnum, Lua:firenum, Kim:metalnum, Nuoc:waternum, Go:woodnum};
+	var elementsobj = {Earth: earthnum, Fire:firenum, Metal:metalnum, Water:waternum, Wood:woodnum};
 	var sortable=[];
 	for(var key in elementsobj)
 			if(elementsobj.hasOwnProperty(key))
@@ -111,16 +120,16 @@ function calelements(elementsnum){
 function elementadvice(pelement){
 	var vindexof = pelement.indexOf(",");
 	var elementname = pelement.substring(0,vindexof);
-	if(elementname == "Dat"){
-		 var advice = "Yếu tố nhất bạn có là Đất";
-	}else if(elementname == "Lua"){
-		 var advice = "Yếu tố nhất bạn có là Lửa";
-	}else if(elementname == "Kim"){
-		 var advice = "Yếu tố nhất bạn có là Kim";
-	}else if(elementname == "Nuoc"){
-		 var advice = "Yếu tố nhất bạn có là Nước";
-	}else if(elementname == "Go"){
-		 var advice = "Yếu tố nhất bạn có là Gỗ";
+	if(elementname == "Earth"){
+		 var advice = "The most element you have is Earth";
+	}else if(elementname == "Fire"){
+		 var advice = "The most element you have is Fire";
+	}else if(elementname == "Metal"){
+		 var advice = "The most element you have is Metal";
+	}else if(elementname == "Water"){
+		 var advice = "The most element you have is Water";
+	}else if(elementname == "Wood"){
+		 var advice = "The most element you have is Wood";
 	}
 	return advice;
 }
@@ -131,6 +140,5 @@ function matchelement(pdayskyelement, pelementstring){
 }
 
 function explain(){
-	window.location = "explanation.html";
+	window.location = "/cn/explanation"
 }
-

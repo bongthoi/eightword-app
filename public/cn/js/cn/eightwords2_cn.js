@@ -1,8 +1,10 @@
-
 //skys = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
-var Tien = ["Giáp","Ất","Bính","Đinh","Mậu","Kỷ","Canh","Tân","Nhâm","Qúy"];
+// var Tien = ["Giáp","Ất","Bính","Đinh","Mậu","Kỷ","Canh","Tân","Nhâm","Qúy"];
 //earths = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
-var Di = ["Tý","Sửu","Dần","Mão","Thìn","Tỵ","Ngọ","Mùi","Thân","Dậu","Tuất","Hợi"];
+// var Di = ["Tý","Sửu","Dần","Mão","Thìn","Tỵ","Ngọ","Mùi","Thân","Dậu","Tuất","Hợi"];
+
+var Tien = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+var Di = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
 var vyearsky;
 var vyearearth;
 var vmonthsky;
@@ -17,10 +19,18 @@ function msg2(){
 	//lert(checkyearsky(vlunaryear));
 	vyearsky = Tien[checkyearsky(vlunaryear)-1];
 	//alert(checkyearearth(vlunaryear));
-	vyearearth = Di[checkyearearth(vlunaryear)-1];
+	if((checkyearearth(vlunaryear))==0){
+		vyearearth = Di[12-1];
+	}else{
+		vyearearth = Di[checkyearearth(vlunaryear)-1];
+	};
 	document.getElementById("yearwords").value = vyearsky + "-" + vyearearth;
 	vmonthsky = Tien[checkmonthsky(vlunarmonth,checkyearsky(vlunaryear))-1];
-	vmonthearth = Di[checkmonthearth(vlunarmonth)-1];
+	if(checkmonthearth(vlunarmonth)==0){
+		vmonthearth = Di[11];
+	}else{
+		vmonthearth = Di[checkmonthearth(vlunarmonth)-1];
+	}
 	document.getElementById("monthwords").value = vmonthsky + "-" + vmonthearth;
 	var dayskyearth = checkdayearthsky(vlunaryear, vmonthday);
 	var vdayskyearth = dayskyearth.substring(1);
@@ -52,7 +62,6 @@ function checkyearearth(year){
 	 var num;
      if(parseInt(year) < 2000){
 		num = ((parseInt(year) % 60) -3);	
-		alert("xxxx="+num);
 		if(num <=0){
 			earthnum = (num + 60) % 12;
 		}else{
@@ -61,7 +70,6 @@ function checkyearearth(year){
 	 }else{
 		earthnum = (parseInt(year.substring(2)) + 5) % 12;		
 	 }
-	 alert("aaaaaa="+earthnum);
 	return earthnum;
 }
 
