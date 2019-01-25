@@ -39,7 +39,7 @@ input[type="button"]:hover{	background-color: white; color: #4CAF50; }
     border-color: rgb(212, 63, 58);
 }
 .con_giap {
-	margin: 0px 3px;
+	/* margin: 0px 3px; */
 	margin-top: 15px;
 }
 
